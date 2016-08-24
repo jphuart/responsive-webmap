@@ -19,6 +19,28 @@ var osmLayer = new ol.layer.Tile({
 });
 olmap.addLayer(osmLayer);
 
+//JPH Add WMS meteo layer
+var jphMeteoLayer = new ol.layer.Image({
+  source: new ol.source.ImageWMS({
+    url: 'http://localhost:8080/geoserver/aaa_jphtest/wms',
+    params: {'LAYERS': 'aaa_jphtest:meteo_grille', 'viewparams': 'madate:2013-03-18'},
+    serverType: 'geoserver'
+  })
+})
+olmap.addLayer(jphMeteoLayer);
+
+
+//JPH Add WMS layer
+var jphLayer = new ol.layer.Image({
+    source: new ol.source.ImageWMS({
+      url: 'http://localhost:8080/geoserver/aaa_jphtest/wms',
+      params: {'LAYERS': 'aaa_jphtest:belgique'},
+      serverType: 'geoserver'
+    })
+  })
+olmap.addLayer(jphLayer);
+
+
 // Add specific classes to OpenLayers elements
 $('.ol-scale-line').addClass('hidden-xs')
 $('.ol-attribution').addClass('hidden-xs')
